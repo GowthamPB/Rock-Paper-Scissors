@@ -1,14 +1,17 @@
+//Function which returns a random choice from rock,paper,scissors. This function acts as a computer
 function computerPlay(){
     let choice=['rock','paper','scissor']
-    let result=choice[math.floor(math.random()*choice.length())]
-    console.log(math.floor(math.random()*choice.length()))
+    let result=choice[Math.floor(Math.random()*choice.length)]
     return result
 }
+
+let playerPoint=0,computerPoint=0 //Variable to keep track of points
+
+//Function which plays a single round of rock paper scissors game
 function playRound(playerSelection,computerSelection){
-    let playerPoint,computerPoint
-    playerSelection=playerSelection.toLowerCase();
+    playerSelection=playerSelection.toLowerCase(); //To make the player input case sensitive
     switch(playerSelection){
-        //Rock
+        //If player selects rock
         case 'rock':if(computerSelection==='rock'){
                 alert('Draw! Both selected rock')
             }
@@ -21,7 +24,7 @@ function playRound(playerSelection,computerSelection){
                 playerPoint++
             }
             break;
-        //Paper
+        //If player selects paper
         case 'paper':if(computerSelection==='rock'){
                 alert('You win! Paper beats rock')
                 playerPoint++
@@ -34,7 +37,7 @@ function playRound(playerSelection,computerSelection){
                 computerPoint++
             }
             break;
-        //Scissors
+        //If player selects scissor
         case 'scissor':if(computerSelection==='rock'){
                 alert('You loose! Rock beats scissor')
                 computerPoint++
@@ -47,13 +50,29 @@ function playRound(playerSelection,computerSelection){
                 alert('Draw! Both selected scissor')
             }
             break;
+        //If none of the above cases run
         default:alert('Enter proper choice')
     }
+    console.log(playerPoint,computerPoint)
+    return [playerPoint,computerPoint]
 }
+
 function game(){
-    let playerChoice=prompt("Enter either rock or paper or scissor","")
-    let computerChoice=computerPlay()
-    while(point<=5){
+    while(playerPoint<5 && computerPoint<5){
+        let playerChoice=prompt("Enter either rock or paper or scissor","")
+        let computerChoice=computerPlay()
+        console.log(computerChoice)
         let point=playRound(playerChoice,computerChoice)
+        console.log("point="+point)
+        alert(`Computer point is ${computerPoint}`)
+        alert(`Player point is ${playerPoint}`)
     }
+    if(playerPoint==5){
+        alert("Hell Yeah!!! You've beat the computer! Looks like AI is not gonna take over the world after all")
+    }
+    else{
+        alert("Computer won! The end is near folks!!! They are now smarter than us")
+    }
+    
 }
+game()
